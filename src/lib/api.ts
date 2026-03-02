@@ -48,55 +48,33 @@ export async function sendSmsCode(
   }
 }
 
-/** 验证码校验 + 注册 + 兑换会员一体化接口 */
+/** 验证码登录/自动注册 + 兑换会员 一体化接口 */
 export async function claimMembership(
   phone: string,
   code: string
 ): Promise<{ success: boolean; message: string }> {
   if (MOCK_ENABLED) {
     await delay(1200);
-    // 验证码错误
     if (code !== MOCK_CORRECT_CODE) {
       return { success: false, message: "验证码错误，请重新输入" };
     }
-    // 模拟：已注册且已参与活动
     if (phone === "13900000000") {
       return { success: false, message: "您已领取过此权益，无需重复领取" };
     }
-    // 模拟：活动名额已满
     if (phone === "13700000000") {
       return { success: false, message: "活动领取已达到上限" };
     }
-    // 未注册→注册+赠送 / 已注册未参与→赠送
     return { success: true, message: "领取成功" };
   }
 
   try {
-    const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
+    const res = await fetch(`${API_BASE}/api/membership/claim`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone, code }),
+      body: JSON.stringify({ phone, code, plan: "premium_30d" }),
     });
-    const loginData = await loginRes.json();
-    if (!loginRes.ok) {
-      throw new Error(loginData.message || "验证失败，请检查验证码");
-    }
-
-    const token = loginData.token;
-
-    const redeemRes = await fetch(`${API_BASE}/api/membership/redeem`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ plan: "premium_30d" }),
-    });
-    const redeemData = await redeemRes.json();
-    if (!redeemRes.ok) {
-      throw new Error(redeemData.message || "兑换失败");
-    }
-
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "领取失败");
     return { success: true, message: "领取成功" };
   } catch (e: any) {
     return { success: false, message: e.message || "网络异常，请稍后重试" };
