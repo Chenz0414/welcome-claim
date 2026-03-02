@@ -123,7 +123,8 @@ const ConversionCard = () => {
             onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
             placeholder="输入验证码"
             maxLength={6}
-            className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-foreground placeholder:text-muted-foreground"
+            disabled={!PHONE_REGEX.test(phone)}
+            className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <button
             id="send-code-btn"
