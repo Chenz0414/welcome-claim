@@ -6,19 +6,19 @@ import ritaText from "@/assets/rita-text.webp";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex justify-center" style={{ background: "hsl(213 27% 96%)" }}>
+    <div className="min-h-screen min-h-[100dvh] flex justify-center bg-muted">
       <div
         className="w-full max-w-[450px] relative flex flex-col overflow-x-hidden pb-5 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)]"
-        style={{ background: "var(--gradient-sky)" }}
+        style={{ background: "var(--gradient-sky)", paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         {/* Header */}
-        <header className="pt-10 px-6 pb-2.5 flex items-center justify-between relative z-10">
+        <header className="pt-8 sm:pt-10 px-5 sm:px-6 pb-2.5 flex items-center justify-between relative z-10">
           <div className="w-[60%]">
             <div className="flex items-center gap-2 mb-1.5">
               <img src={ritaLogo} alt="Rita Logo" className="w-7 h-7" />
               <img src={ritaText} alt="Rita" className="h-5" />
             </div>
-            <h1 className="text-2xl font-black leading-[1.3] tracking-tight text-foreground mb-2.5">
+            <h1 className="text-xl sm:text-2xl font-black leading-[1.3] tracking-tight text-foreground mb-2.5">
               聚合全球顶级模型
               <br />
               提升企业 AI 生产力

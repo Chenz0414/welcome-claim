@@ -1,6 +1,6 @@
 const Globe = () => {
   return (
-    <div className="relative w-[130px] h-[130px] flex items-center justify-center -mr-4">
+    <div className="relative w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] flex items-center justify-center -mr-4 shrink-0">
       {/* Orbit */}
       <div
         className="absolute w-[130%] h-[40%] border border-rita-blue/30 rounded-[50%]"
@@ -11,7 +11,7 @@ const Globe = () => {
 
       {/* Globe sphere */}
       <div
-        className="w-[100px] h-[100px] relative rounded-full overflow-hidden shadow-globe"
+        className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] relative rounded-full overflow-hidden shadow-globe"
         style={{
           background: "radial-gradient(circle, hsl(var(--rita-blue)) 0%, hsl(var(--rita-blue-deep)) 40%, hsl(var(--rita-blue-darker)) 100%)",
           animation: "pulse-glow 4s ease-in-out infinite",

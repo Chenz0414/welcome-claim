@@ -77,7 +77,7 @@ const ConversionCard = () => {
 
   return (
     <>
-      <section className="bg-card mx-6 mt-1 mb-4 p-6 rounded-3xl shadow-card relative z-20 border border-card/70">
+      <section className="bg-card mx-5 sm:mx-6 mt-1 mb-4 p-5 sm:p-6 rounded-3xl shadow-card relative z-20 border border-card/70">
         {/* Phone input */}
         <div className="bg-rita-input-bg h-[52px] rounded-xl flex items-center px-4 mb-2.5 border border-border transition-all focus-within:border-primary focus-within:bg-card focus-within:shadow-[0_0_0_4px_hsla(217,91%,60%,0.08)]">
           <input

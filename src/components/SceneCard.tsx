@@ -26,7 +26,7 @@ const scenes: SceneItem[] = [
 
 const SceneCard = () => {
   return (
-    <div className="flex flex-col gap-2.5 px-6">
+    <div className="flex flex-col gap-2.5 px-5 sm:px-6">
       {scenes.map((scene, i) => (
         <div
           key={i}
