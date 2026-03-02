@@ -18,12 +18,12 @@ const Toast = ({ message, visible, onHide, type = "info" }: ToastProps) => {
 
   return (
     <div
-      className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[2000] px-6 py-3 rounded-full text-sm font-medium shadow-lg transition-all ${
+      className={`fixed top-1/2 left-1/2 z-[2000] px-6 py-3 rounded-full text-sm font-medium shadow-lg ${
         type === "error"
           ? "bg-destructive text-destructive-foreground"
           : "bg-foreground/85 text-background"
       }`}
-      style={{ animation: "fade-in-up 0.2s ease-out" }}
+      style={{ transform: "translate(-50%, -50%)", animation: "fade-in-up 0.2s ease-out" }}
     >
       {message}
     </div>
