@@ -128,10 +128,10 @@ const ConversionCard = () => {
           />
           <button
             id="send-code-btn"
-            disabled={countdown > 0}
-            className="text-xs sm:text-sm font-bold text-primary pl-3 sm:pl-4 border-l-[1.5px] border-border whitespace-nowrap disabled:text-muted-foreground transition-colors shrink-0"
+            disabled={countdown > 0 || !PHONE_REGEX.test(phone)}
+            className="text-xs sm:text-sm font-bold text-primary pl-3 sm:pl-4 border-l-[1.5px] border-border whitespace-nowrap disabled:text-muted-foreground disabled:cursor-not-allowed transition-colors shrink-0"
           >
-            {countdown > 0 ? `${countdown}s` : "获取验证码"}
+            {countdown > 0 ? `${countdown}s` : "获取"}
           </button>
         </div>
 
