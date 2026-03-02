@@ -1,9 +1,9 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Users } from "lucide-react";
 import Toast from "./Toast";
 import SuccessModal from "./SuccessModal";
 import { sendSmsCode, claimMembership, config } from "@/lib/api";
-import { invokeCaptcha } from "@/hooks/use-captcha";
+import { initCaptcha } from "@/hooks/use-captcha";
 
 const PHONE_REGEX = /^1[3-9]\d{9}$/;
 
@@ -15,6 +15,8 @@ const ConversionCard = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [toast, setToast] = useState({ visible: false, message: "", type: "info" as "error" | "info" });
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const phoneRef = useRef(phone);
+  phoneRef.current = phone;
 
   const showToast = useCallback((message: string, type: "error" | "info" = "error") => {
     setToast({ visible: true, message, type });
@@ -24,43 +26,55 @@ const ConversionCard = () => {
     setToast((prev) => ({ ...prev, visible: false }));
   }, []);
 
-  // 发送验证码（先人机验证，再发短信）
-  const handleSendCode = useCallback(async () => {
-    if (!PHONE_REGEX.test(phone)) {
-      showToast("请输入正确的手机号");
-      return;
-    }
-    if (countdown > 0) return;
+  // 初始化阿里云验证码2.0（弹出式），绑定到"获取验证码"按钮
+  useEffect(() => {
+    const init = async () => {
+      try {
+        await initCaptcha(
+          "captcha-element",
+          "send-code-btn",
+          async (captchaVerifyParam: string) => {
+            // 验证码弹窗验证通过后，自动触发此回调
+            const currentPhone = phoneRef.current;
+            if (!PHONE_REGEX.test(currentPhone)) {
+              showToast("请输入正确的手机号");
+              return { captchaResult: false, bizResult: false };
+            }
 
-    // 1. 触发阿里云人机验证
-    let captchaResult;
-    try {
-      captchaResult = await invokeCaptcha();
-    } catch (err: any) {
-      showToast(err.message || "人机验证失败，请重试");
-      return;
-    }
+            // 发送短信
+            const result = await sendSmsCode(currentPhone, captchaVerifyParam);
 
-    // 2. 验证通过后，乐观启动倒计时
-    setCountdown(60);
-    countdownRef.current = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          if (countdownRef.current) clearInterval(countdownRef.current);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+            if (result.success) {
+              // 启动倒计时
+              setCountdown(60);
+              countdownRef.current = setInterval(() => {
+                setCountdown((prev) => {
+                  if (prev <= 1) {
+                    if (countdownRef.current) clearInterval(countdownRef.current);
+                    return 0;
+                  }
+                  return prev - 1;
+                });
+              }, 1000);
+              return { captchaResult: true, bizResult: true };
+            } else {
+              showToast(result.message);
+              return { captchaResult: true, bizResult: false };
+            }
+          },
+          (_bizResult: boolean) => {
+            // 业务结果回调（已在 captchaVerifyCallback 中处理）
+          }
+        );
+      } catch (err) {
+        console.error("验证码初始化失败:", err);
+      }
+    };
 
-    // 3. 携带人机验证结果发送短信
-    const result = await sendSmsCode(phone, captchaResult);
-    if (!result.success) {
-      if (countdownRef.current) clearInterval(countdownRef.current);
-      setCountdown(0);
-      showToast(result.message);
-    }
-  }, [phone, countdown, showToast]);
+    // 延迟初始化，确保 DOM 就绪
+    const timer = setTimeout(init, 500);
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   // 领取会员
   const handleClaim = useCallback(async () => {
@@ -112,13 +126,16 @@ const ConversionCard = () => {
             className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-foreground placeholder:text-muted-foreground"
           />
           <button
-            onClick={handleSendCode}
+            id="send-code-btn"
             disabled={countdown > 0}
             className="text-xs sm:text-sm font-bold text-primary pl-3 sm:pl-4 border-l-[1.5px] border-border whitespace-nowrap disabled:text-muted-foreground transition-colors shrink-0"
           >
             {countdown > 0 ? `${countdown}s` : "获取验证码"}
           </button>
         </div>
+
+        {/* 验证码渲染容器（弹出式不可见） */}
+        <div id="captcha-element" />
 
         {/* CTA Button */}
         <button
