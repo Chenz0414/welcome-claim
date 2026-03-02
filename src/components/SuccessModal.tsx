@@ -1,5 +1,5 @@
-import { Check, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Check, Sparkles, Copy, CheckCheck } from "lucide-react";
+import { useState } from "react";
 
 interface SuccessModalProps {
   visible: boolean;
@@ -7,28 +7,28 @@ interface SuccessModalProps {
   autoRedirectSeconds?: number;
 }
 
-const SuccessModal = ({ visible, redirectUrl, autoRedirectSeconds = 5 }: SuccessModalProps) => {
-  const [countdown, setCountdown] = useState(autoRedirectSeconds);
-
-  useEffect(() => {
-    if (!visible) return;
-    setCountdown(autoRedirectSeconds);
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          window.location.href = redirectUrl;
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [visible, redirectUrl, autoRedirectSeconds]);
+const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
+  const [copied, setCopied] = useState(false);
 
   if (!visible) return null;
 
-  const progress = ((autoRedirectSeconds - countdown) / autoRedirectSeconds) * 100;
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(redirectUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = redirectUrl;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center animate-fade-in-up"
@@ -84,31 +84,35 @@ const SuccessModal = ({ visible, redirectUrl, autoRedirectSeconds = 5 }: Success
           请使用该手机号登录 Rita 开启工作
         </p>
 
-        {/* CTA Button with progress bar */}
+        {/* CTA Button */}
         <div className="w-full relative">
           <button
             onClick={() => (window.location.href = redirectUrl)}
-            className="w-full h-14 rounded-2xl font-bold text-base text-primary-foreground transition-all active:scale-[0.98] relative overflow-hidden"
+            className="w-full h-14 rounded-2xl font-bold text-base text-primary-foreground transition-all active:scale-[0.98]"
             style={{
               background: "linear-gradient(135deg, hsl(217 91% 60%), hsl(224 76% 48%))",
               boxShadow: "0 8px 24px hsl(217 91% 60% / 0.35), 0 2px 8px hsl(224 76% 48% / 0.2)"
             }}
           >
-            <span className="relative z-10">进入工作台 ({countdown}s)</span>
-            {/* Progress fill */}
-            <div
-              className="absolute inset-0 opacity-20 transition-all duration-1000 ease-linear"
-              style={{
-                background: "hsl(0 0% 100%)",
-                width: `${progress}%`,
-              }}
-            />
+            进入工作台
           </button>
         </div>
 
-        {/* Subtle footer */}
-        <p className="mt-6 text-[11px] text-muted-foreground/60 text-center">
-          页面将在 {countdown} 秒后自动跳转
+        {/* Copy URL */}
+        <button
+          onClick={handleCopy}
+          className="mt-4 flex items-center gap-1.5 mx-auto px-4 py-2 rounded-xl text-xs transition-all active:scale-95"
+          style={{
+            background: copied ? "hsl(142 71% 45% / 0.1)" : "hsl(217 91% 60% / 0.08)",
+            color: copied ? "hsl(142 71% 35%)" : "hsl(217 91% 50%)",
+          }}
+        >
+          {copied ? <CheckCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+          {copied ? "已复制链接" : "复制工作台链接"}
+        </button>
+
+        <p className="mt-4 text-[11px] text-muted-foreground/60 text-center">
+          如跳转失败，请复制链接后在浏览器中打开
         </p>
       </div>
     </div>
