@@ -146,7 +146,7 @@ const ConversionCard = () => {
           style={{ background: "var(--gradient-orange)" }}
         >
           <span className="text-[17px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-            {loading ? "正在激活特权..." : "立即领取 30 天高级版权益"}
+            {loading ? "正在激活特权..." : "立即领取零售大会专属权益"}
           </span>
           <span className="text-[10px] opacity-95 font-normal mt-0.5">
             {loading ? "礼包发放中" : "价值 300 元礼包"}
