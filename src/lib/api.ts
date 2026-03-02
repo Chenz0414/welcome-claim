@@ -53,14 +53,13 @@ export async function claimMembership(
     if (code !== MOCK_CORRECT_CODE) {
       return { success: false, message: "验证码错误，请重新输入" };
     }
-    // 模拟已领取过
+    // 模拟：已注册且已参与活动 → toast 提示已领取
     if (phone === "13900000000") {
-      return { success: false, message: "该手机号已领取过此权益，请勿重复领取" };
+      return { success: false, message: "您已领取过此权益，无需重复领取" };
     }
-    // 模拟活动过期
-    if (phone === "13700000000") {
-      return { success: false, message: "活动已结束，感谢您的关注" };
-    }
+    // 模拟：未注册 → 注册 + 赠送会员
+    // 模拟：已注册但未参与 → 直接赠送会员
+    // 两种情况后端统一返回成功，前端展示领取成功弹窗
     return { success: true, message: "领取成功" };
   }
 
