@@ -1,6 +1,7 @@
 import Globe from "@/components/Globe";
 import ConversionCard from "@/components/ConversionCard";
 import SceneCard from "@/components/SceneCard";
+import EnterpriseCases from "@/components/EnterpriseCases";
 import ritaLogo from "@/assets/rita-logo.webp";
 import ritaText from "@/assets/rita-text.webp";
 
@@ -37,6 +38,9 @@ const Index = () => {
 
         {/* Scene Cards */}
         <SceneCard />
+
+        {/* Enterprise Cases */}
+        <EnterpriseCases />
 
         {/* Footer */}
         <footer className="pt-6 pb-2.5 text-center text-[11px] font-semibold text-rita-slate-faint">
