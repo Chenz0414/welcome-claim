@@ -1,3 +1,5 @@
+import type { CaptchaResult } from "@/hooks/use-captcha";
+
 /**
  * API 配置 - 替换为你的实际接口地址
  */
@@ -17,11 +19,14 @@ function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/** 发送短信验证码 */
-export async function sendSmsCode(phone: string): Promise<{ success: boolean; message: string }> {
+/** 发送短信验证码（需人机验证结果） */
+export async function sendSmsCode(
+  phone: string,
+  captcha: CaptchaResult
+): Promise<{ success: boolean; message: string }> {
   if (MOCK_ENABLED) {
     await delay(800);
-    // 模拟特定号码发送失败
+    console.log("[Mock] 人机验证参数:", captcha);
     if (phone === "13800000000") {
       return { success: false, message: "该手机号发送过于频繁，请稍后再试" };
     }
@@ -32,7 +37,12 @@ export async function sendSmsCode(phone: string): Promise<{ success: boolean; me
     const res = await fetch(`${API_BASE}/api/sms/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone }),
+      body: JSON.stringify({
+        phone,
+        captchaSessionId: captcha.sessionId,
+        captchaSig: captcha.sig,
+        captchaToken: captcha.token,
+      }),
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "发送失败");
