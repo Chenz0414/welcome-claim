@@ -1,5 +1,3 @@
-import type { CaptchaResult } from "@/hooks/use-captcha";
-
 /**
  * API 配置 - 替换为你的实际接口地址
  */
@@ -19,14 +17,14 @@ function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/** 发送短信验证码（需人机验证结果） */
+/** 发送短信验证码（需人机验证参数） */
 export async function sendSmsCode(
   phone: string,
-  captcha: CaptchaResult
+  captchaVerifyParam: string
 ): Promise<{ success: boolean; message: string }> {
   if (MOCK_ENABLED) {
     await delay(800);
-    console.log("[Mock] 人机验证参数:", captcha);
+    console.log("[Mock] 人机验证参数:", captchaVerifyParam);
     if (phone === "13800000000") {
       return { success: false, message: "该手机号发送过于频繁，请稍后再试" };
     }
@@ -39,9 +37,7 @@ export async function sendSmsCode(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         phone,
-        captchaSessionId: captcha.sessionId,
-        captchaSig: captcha.sig,
-        captchaToken: captcha.token,
+        captchaVerifyParam,
       }),
     });
     const data = await res.json();
