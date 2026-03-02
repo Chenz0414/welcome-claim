@@ -2,7 +2,7 @@
  * API 配置 - 替换为你的实际接口地址
  */
 const API_BASE = "https://your-api-domain.com";
-const REDIRECT_URL = "https://your-app-domain.com/workspace";
+const REDIRECT_URL = "https://www.wahezu.cn/ai-chat?ch=P0012L3VH47";
 
 // Mock 模式开关 - 上线前设为 false
 const MOCK_ENABLED = true;
