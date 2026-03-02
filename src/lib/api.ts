@@ -4,13 +4,30 @@
 const API_BASE = "https://your-api-domain.com";
 const REDIRECT_URL = "https://your-app-domain.com/workspace";
 
+// Mock 模式开关 - 上线前设为 false
+const MOCK_ENABLED = true;
+const MOCK_CORRECT_CODE = "123456";
+
 export const config = {
   apiBase: API_BASE,
   redirectUrl: REDIRECT_URL,
 };
 
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 /** 发送短信验证码 */
 export async function sendSmsCode(phone: string): Promise<{ success: boolean; message: string }> {
+  if (MOCK_ENABLED) {
+    await delay(800);
+    // 模拟特定号码发送失败
+    if (phone === "13800000000") {
+      return { success: false, message: "该手机号发送过于频繁，请稍后再试" };
+    }
+    return { success: true, message: "验证码已发送" };
+  }
+
   try {
     const res = await fetch(`${API_BASE}/api/sms/send`, {
       method: "POST",
@@ -30,8 +47,24 @@ export async function claimMembership(
   phone: string,
   code: string
 ): Promise<{ success: boolean; message: string }> {
+  if (MOCK_ENABLED) {
+    await delay(1200);
+    // 验证码错误
+    if (code !== MOCK_CORRECT_CODE) {
+      return { success: false, message: "验证码错误，请重新输入" };
+    }
+    // 模拟已领取过
+    if (phone === "13900000000") {
+      return { success: false, message: "该手机号已领取过此权益，请勿重复领取" };
+    }
+    // 模拟活动过期
+    if (phone === "13700000000") {
+      return { success: false, message: "活动已结束，感谢您的关注" };
+    }
+    return { success: true, message: "领取成功" };
+  }
+
   try {
-    // Step 1: 验证手机号 + 验证码，注册/登录
     const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,7 +77,6 @@ export async function claimMembership(
 
     const token = loginData.token;
 
-    // Step 2: 兑换会员
     const redeemRes = await fetch(`${API_BASE}/api/membership/redeem`, {
       method: "POST",
       headers: {
@@ -55,7 +87,6 @@ export async function claimMembership(
     });
     const redeemData = await redeemRes.json();
     if (!redeemRes.ok) {
-      // 常见边界：已领取过、活动过期、库存不足
       throw new Error(redeemData.message || "兑换失败");
     }
 
