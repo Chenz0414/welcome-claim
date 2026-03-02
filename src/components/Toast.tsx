@@ -18,14 +18,17 @@ const Toast = ({ message, visible, onHide, type = "info" }: ToastProps) => {
 
   return (
     <div
-      className={`fixed top-1/2 left-1/2 z-[2000] px-6 py-3 rounded-full text-sm font-medium shadow-lg ${
-        type === "error"
-          ? "bg-destructive text-destructive-foreground"
-          : "bg-foreground/85 text-background"
-      }`}
-      style={{ transform: "translate(-50%, -50%)", animation: "fade-in-up 0.2s ease-out" }}
+      className={`fixed inset-0 z-[2000] flex items-center justify-center pointer-events-none`}
     >
-      {message}
+      <div
+        className={`px-6 py-3 rounded-full text-sm font-medium shadow-lg pointer-events-auto ${
+          type === "error"
+            ? "bg-destructive text-destructive-foreground"
+            : "bg-foreground/85 text-background"
+        }`}
+      >
+        {message}
+      </div>
     </div>
   );
 };
