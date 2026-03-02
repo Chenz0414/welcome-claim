@@ -3,6 +3,7 @@ import { Users } from "lucide-react";
 import Toast from "./Toast";
 import SuccessModal from "./SuccessModal";
 import { sendSmsCode, claimMembership, config } from "@/lib/api";
+import { invokeCaptcha } from "@/hooks/use-captcha";
 
 const PHONE_REGEX = /^1[3-9]\d{9}$/;
 
@@ -23,7 +24,7 @@ const ConversionCard = () => {
     setToast((prev) => ({ ...prev, visible: false }));
   }, []);
 
-  // 发送验证码
+  // 发送验证码（先人机验证，再发短信）
   const handleSendCode = useCallback(async () => {
     if (!PHONE_REGEX.test(phone)) {
       showToast("请输入正确的手机号");
@@ -31,7 +32,16 @@ const ConversionCard = () => {
     }
     if (countdown > 0) return;
 
-    // 乐观启动倒计时（防重复点击）
+    // 1. 触发阿里云人机验证
+    let captchaResult;
+    try {
+      captchaResult = await invokeCaptcha();
+    } catch (err: any) {
+      showToast(err.message || "人机验证失败，请重试");
+      return;
+    }
+
+    // 2. 验证通过后，乐观启动倒计时
     setCountdown(60);
     countdownRef.current = setInterval(() => {
       setCountdown((prev) => {
@@ -43,9 +53,9 @@ const ConversionCard = () => {
       });
     }, 1000);
 
-    const result = await sendSmsCode(phone);
+    // 3. 携带人机验证结果发送短信
+    const result = await sendSmsCode(phone, captchaResult);
     if (!result.success) {
-      // 发送失败，重置倒计时
       if (countdownRef.current) clearInterval(countdownRef.current);
       setCountdown(0);
       showToast(result.message);
