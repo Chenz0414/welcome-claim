@@ -1,6 +1,8 @@
 import Globe from "@/components/Globe";
 import ConversionCard from "@/components/ConversionCard";
 import SceneCard from "@/components/SceneCard";
+import ritaLogo from "@/assets/rita-logo.webp";
+import ritaText from "@/assets/rita-text.webp";
 
 const Index = () => {
   return (
@@ -12,7 +14,10 @@ const Index = () => {
         {/* Header */}
         <header className="pt-10 px-6 pb-2.5 flex items-center justify-between relative z-10">
           <div className="w-[60%]">
-            <div className="text-2xl font-black tracking-tight text-primary mb-1.5">Rita</div>
+            <div className="flex items-center gap-2 mb-1.5">
+              <img src={ritaLogo} alt="Rita Logo" className="w-7 h-7" />
+              <img src={ritaText} alt="Rita" className="h-5" />
+            </div>
             <h1 className="text-2xl font-black leading-[1.3] tracking-tight text-foreground mb-2.5">
               聚合全球顶级模型
               <br />
