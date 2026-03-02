@@ -29,7 +29,7 @@ const SuccessModal = ({ visible, redirectUrl, autoRedirectSeconds = 5 }: Success
   if (!visible) return null;
 
   return (
-    <div className="absolute inset-0 bg-card flex flex-col items-center justify-center px-10 z-50 animate-fade-in-up">
+    <div className="fixed inset-0 bg-card flex flex-col items-center justify-center px-10 z-50 animate-fade-in-up">
       <div className="w-20 h-20 bg-rita-sky-start text-primary rounded-full flex items-center justify-center mb-6">
         <Check className="w-10 h-10" />
       </div>
