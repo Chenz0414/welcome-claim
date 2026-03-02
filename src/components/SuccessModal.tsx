@@ -101,14 +101,15 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
         {/* Copy URL */}
         <button
           onClick={handleCopy}
-          className="mt-4 flex items-center gap-1.5 mx-auto px-4 py-2 rounded-xl text-xs transition-all active:scale-95"
+          className="mt-4 w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-semibold transition-all active:scale-[0.98]"
           style={{
-            background: copied ? "hsl(142 71% 45% / 0.1)" : "hsl(217 91% 60% / 0.08)",
+            background: copied ? "hsl(142 71% 45% / 0.12)" : "hsl(0 0% 0% / 0.04)",
             color: copied ? "hsl(142 71% 35%)" : "hsl(217 91% 50%)",
+            border: copied ? "1.5px solid hsl(142 71% 45% / 0.25)" : "1.5px solid hsl(217 91% 60% / 0.2)",
           }}
         >
-          {copied ? <CheckCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-          {copied ? "已复制链接" : "复制工作台链接"}
+          {copied ? <CheckCheck className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+          {copied ? "链接已复制到剪贴板 ✓" : "复制工作台链接（备用）"}
         </button>
 
         <p className="mt-4 text-[11px] text-muted-foreground/60 text-center">
