@@ -1,5 +1,8 @@
 import { Check, Sparkles, Copy, CheckCheck } from "lucide-react";
 import { useState } from "react";
+import safariIcon from "@/assets/browser-safari.png";
+import chromeIcon from "@/assets/browser-chrome.png";
+import ucIcon from "@/assets/browser-uc.png";
 
 interface SuccessModalProps {
   visible: boolean;
@@ -120,29 +123,14 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 style={{ background: "hsl(217 91% 60%)" }}>1</span>
               <span className="text-xs text-muted-foreground leading-relaxed">点击上方「复制链接」按钮</span>
             </div>
-            <div className="flex items-start gap-2.5">
+            <div className="flex items-center gap-2.5">
               <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-primary-foreground"
                 style={{ background: "hsl(217 91% 60%)" }}>2</span>
-              <div className="flex flex-col gap-1.5">
-                <span className="text-xs text-muted-foreground leading-relaxed">打开手机桌面的「浏览器」</span>
-                <div className="flex items-center gap-2">
-                  {/* Safari */}
-                  <div className="w-6 h-6 rounded-md flex items-center justify-center text-[10px]" style={{ background: "linear-gradient(180deg, #56C1F5 0%, #0A84FF 100%)" }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5"/><path d="M12 2L14 10L12 12L10 10L12 2Z" fill="white" opacity="0.9"/><path d="M12 22L10 14L12 12L14 14L12 22Z" fill="#FF3B30" opacity="0.9"/><path d="M2 12L10 10L12 12L10 14L2 12Z" fill="white" opacity="0.9"/><path d="M22 12L14 14L12 12L14 10L22 12Z" fill="#FF3B30" opacity="0.9"/></svg>
-                  </div>
-                  {/* Chrome */}
-                  <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ background: "#f1f1f1" }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8C14.2 8 16 9.8 16 12H22C22 6.48 17.52 2 12 2C9.8 2 7.8 2.8 6.2 4.1L9.1 9.1C9.8 8.4 10.8 8 12 8Z" fill="#EA4335"/><path d="M6.2 4.1L9.1 9.1C8.4 9.8 8 10.8 8 12C8 13.2 8.4 14.2 9.1 14.9L6.2 19.9C3.8 17.8 2 14.6 2 12C2 8.8 3.6 6 6.2 4.1Z" fill="#FBBC05"/><path d="M12 16C10.8 16 9.8 15.6 9.1 14.9L6.2 19.9C7.8 21.2 9.8 22 12 22C17.52 22 22 17.52 22 12H16C16 14.2 14.2 16 12 16Z" fill="#34A853"/></svg>
-                  </div>
-                  {/* 华为浏览器 */}
-                  <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ background: "#CE0E2D" }}>
-                    <span className="text-white text-[9px] font-black">HW</span>
-                  </div>
-                  {/* UC */}
-                  <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ background: "#FF6600" }}>
-                    <span className="text-white text-[9px] font-black">UC</span>
-                  </div>
-                </div>
+              <span className="text-xs text-muted-foreground leading-relaxed">打开手机桌面的「浏览器」</span>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <img src={safariIcon} alt="Safari" className="w-4 h-4 rounded-sm" />
+                <img src={chromeIcon} alt="Chrome" className="w-4 h-4 rounded-sm" />
+                <img src={ucIcon} alt="UC" className="w-4 h-4 rounded-sm" />
               </div>
             </div>
             <div className="flex items-start gap-2.5">
