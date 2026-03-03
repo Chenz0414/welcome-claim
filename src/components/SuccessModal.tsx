@@ -79,9 +79,7 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
 
         {/* Description */}
         <p className="text-muted-foreground text-sm text-center leading-relaxed mb-10 max-w-[280px]">
-          30 天高级版体验特权已即时生效
-          <br />
-          点击「复制」，打开浏览器，粘贴复制的链接开启效率绿色通道~！
+          30 天高级版体验特权已即时生效，点击复制进入浏览器使用 Rita
         </p>
 
         {/* Copy URL bar */}
