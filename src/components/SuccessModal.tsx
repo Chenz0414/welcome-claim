@@ -1,5 +1,6 @@
 import { Check, Sparkles, Copy, CheckCheck } from "lucide-react";
 import { useState } from "react";
+import huaweiIcon from "@/assets/browser-huawei.webp";
 import safariIcon from "@/assets/browser-safari.png";
 import chromeIcon from "@/assets/browser-chrome.png";
 import ucIcon from "@/assets/browser-uc.png";
@@ -127,10 +128,11 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
               <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-primary-foreground"
                 style={{ background: "hsl(217 91% 60%)" }}>2</span>
               <span className="text-xs text-muted-foreground leading-relaxed">打开手机桌面的「浏览器」</span>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <img src={safariIcon} alt="Safari" className="w-4 h-4 rounded-sm" />
-                <img src={chromeIcon} alt="Chrome" className="w-4 h-4 rounded-sm" />
-                <img src={ucIcon} alt="UC" className="w-4 h-4 rounded-sm" />
+              <div className="flex items-center gap-1 shrink-0">
+                <img src={huaweiIcon} alt="华为浏览器" className="w-[18px] h-[18px] rounded-[3px] object-cover" />
+                <img src={safariIcon} alt="Safari" className="w-[18px] h-[18px] rounded-[3px] object-cover" />
+                <img src={chromeIcon} alt="Chrome" className="w-[18px] h-[18px] rounded-[3px] object-cover" />
+                <img src={ucIcon} alt="UC" className="w-[18px] h-[18px] rounded-[3px] object-cover" />
               </div>
             </div>
             <div className="flex items-start gap-2.5">
