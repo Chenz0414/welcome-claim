@@ -78,10 +78,10 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
         </h2>
 
         {/* Description */}
-        <p className="text-muted-foreground text-sm text-center leading-relaxed mb-10 max-w-[260px]">
+        <p className="text-muted-foreground text-sm text-center leading-relaxed mb-10 max-w-[280px]">
           30 天高级版体验特权已即时生效
           <br />
-          请使用该手机号登录 Rita 开启工作
+          点击「复制」，打开浏览器，粘贴复制的链接开启效率绿色通道~！
         </p>
 
         {/* Copy URL bar */}
