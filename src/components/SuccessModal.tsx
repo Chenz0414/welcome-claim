@@ -73,8 +73,8 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
         </div>
 
         {/* Title */}
-        <h2 className="text-[28px] font-black text-foreground mb-2 tracking-tight">
-          领取成功 🎉
+        <h2 className="text-[28px] font-black text-foreground mb-2 tracking-tight text-center">
+          领取成功 <span className="inline-block w-0 overflow-visible">🎉</span>
         </h2>
 
         {/* Description */}
