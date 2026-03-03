@@ -98,19 +98,29 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
           </button>
         </div>
 
-        {/* Copy URL */}
-        <button
-          onClick={handleCopy}
-          className="mt-4 w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-semibold transition-all active:scale-[0.98]"
+        {/* Copy URL bar */}
+        <div className="mt-5 w-full flex items-center gap-2 rounded-2xl px-4 py-2.5"
           style={{
-            background: copied ? "hsl(142 71% 45% / 0.12)" : "hsl(0 0% 0% / 0.04)",
-            color: copied ? "hsl(142 71% 35%)" : "hsl(217 91% 50%)",
-            border: copied ? "1.5px solid hsl(142 71% 45% / 0.25)" : "1.5px solid hsl(217 91% 60% / 0.2)",
+            background: "hsl(0 0% 96%)",
+            border: "1px solid hsl(0 0% 90%)",
           }}
         >
-          {copied ? <CheckCheck className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-          {copied ? "链接已复制到剪贴板 ✓" : "复制工作台链接（备用）"}
-        </button>
+          <span className="flex-1 text-sm truncate" style={{ color: "hsl(0 0% 45%)" }}>
+            {redirectUrl.replace(/^https?:\/\//, '')}
+          </span>
+          <Sparkles className="w-4 h-4 shrink-0" style={{ color: "hsl(38 92% 50%)" }} />
+          <button
+            onClick={handleCopy}
+            className="shrink-0 px-5 py-2 rounded-xl text-sm font-bold text-white transition-all active:scale-95"
+            style={{
+              background: copied ? "hsl(142 71% 45%)" : "hsl(217 91% 60%)",
+              boxShadow: copied ? "none" : "0 0 0 0 hsl(217 91% 60% / 0.6)",
+              animation: copied ? "none" : "breath 2s infinite ease-in-out",
+            }}
+          >
+            {copied ? "已复制 ✓" : "复制"}
+          </button>
+        </div>
 
         <p className="mt-4 text-[11px] text-muted-foreground/60 text-center">
           如跳转失败，请复制链接后在浏览器中打开
