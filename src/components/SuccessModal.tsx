@@ -84,22 +84,8 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
           请使用该手机号登录 Rita 开启工作
         </p>
 
-        {/* CTA Button */}
-        <div className="w-full relative">
-          <button
-            onClick={() => (window.location.href = redirectUrl)}
-            className="w-full h-14 rounded-2xl font-bold text-base text-primary-foreground transition-all active:scale-[0.98]"
-            style={{
-              background: "linear-gradient(135deg, hsl(217 91% 60%), hsl(224 76% 48%))",
-              boxShadow: "0 8px 24px hsl(217 91% 60% / 0.35), 0 2px 8px hsl(224 76% 48% / 0.2)"
-            }}
-          >
-            进入工作台
-          </button>
-        </div>
-
         {/* Copy URL bar */}
-        <div className="mt-5 w-full flex items-center gap-2 rounded-2xl px-4 py-2.5"
+        <div className="w-full flex items-center gap-2 rounded-2xl px-4 py-2.5"
           style={{
             background: "hsl(0 0% 96%)",
             border: "1px solid hsl(0 0% 90%)",
@@ -118,13 +104,36 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
               animation: copied ? "none" : "breath 2s infinite ease-in-out",
             }}
           >
-            {copied ? "已复制 ✓" : "复制"}
+            {copied ? "已复制 ✓" : "复制链接"}
           </button>
         </div>
 
-        <p className="mt-4 text-[11px] text-muted-foreground/60 text-center">
-          如跳转失败，请复制链接后在浏览器中打开
-        </p>
+        {/* Mini tutorial */}
+        <div className="mt-6 w-full rounded-2xl px-5 py-4"
+          style={{
+            background: "hsl(210 40% 96%)",
+            border: "1px solid hsl(214 32% 91%)",
+          }}
+        >
+          <p className="text-xs font-bold text-foreground mb-3">📋 如何打开链接？</p>
+          <div className="flex flex-col gap-2.5">
+            <div className="flex items-start gap-2.5">
+              <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-primary-foreground"
+                style={{ background: "hsl(217 91% 60%)" }}>1</span>
+              <span className="text-xs text-muted-foreground leading-relaxed">点击上方「复制链接」按钮</span>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-primary-foreground"
+                style={{ background: "hsl(217 91% 60%)" }}>2</span>
+              <span className="text-xs text-muted-foreground leading-relaxed">打开手机自带浏览器（Safari / Chrome）</span>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-primary-foreground"
+                style={{ background: "hsl(217 91% 60%)" }}>3</span>
+              <span className="text-xs text-muted-foreground leading-relaxed">在地址栏粘贴链接并访问即可</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
