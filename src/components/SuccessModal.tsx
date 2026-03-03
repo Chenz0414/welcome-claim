@@ -169,8 +169,8 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
 
         {/* Share toast */}
         {shareCopied && (
-          <div className="fixed top-12 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 rounded-full text-sm font-medium shadow-lg animate-fade-in-up"
-            style={{ background: "hsl(217 91% 60%)", color: "white" }}
+          <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 rounded-full text-sm font-medium shadow-lg"
+            style={{ background: "hsl(0 0% 20%)", color: "white" }}
           >
             ✅ 已复制分享链接
           </div>
