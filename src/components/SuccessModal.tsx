@@ -13,6 +13,7 @@ interface SuccessModalProps {
 
 const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
   const [copied, setCopied] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
 
   if (!visible) return null;
 
@@ -142,6 +143,38 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
             </div>
           </div>
         </div>
+
+        {/* Share entry */}
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText("https://ai.zhekouniu.net").catch(() => {
+              const ta = document.createElement("textarea");
+              ta.value = "https://ai.zhekouniu.net";
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+            });
+            setShareCopied(true);
+            setTimeout(() => setShareCopied(false), 2000);
+          }}
+          className="mt-5 w-full flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs transition-all active:scale-[0.98]"
+          style={{
+            color: "hsl(217 91% 60%)",
+          }}
+        >
+          <span className="opacity-70">想分享给员工/同事共同开启效率革命？</span>
+          <span className="font-bold underline underline-offset-2">点击分享</span>
+        </button>
+
+        {/* Share toast */}
+        {shareCopied && (
+          <div className="fixed top-12 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 rounded-full text-sm font-medium shadow-lg animate-fade-in-up"
+            style={{ background: "hsl(217 91% 60%)", color: "white" }}
+          >
+            ✅ 已复制分享链接
+          </div>
+        )}
       </div>
     </div>
   );
