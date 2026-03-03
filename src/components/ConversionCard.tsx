@@ -149,7 +149,7 @@ const ConversionCard = () => {
             {loading ? "正在激活特权..." : "立即领取零售大会专属权益"}
           </span>
           <span className="text-[10px] opacity-95 font-normal mt-0.5">
-            {loading ? "礼包发放中" : "价值 300 元礼包"}
+            {loading ? "礼包发放中" : "价值 500 元礼包"}
           </span>
         </button>
 
