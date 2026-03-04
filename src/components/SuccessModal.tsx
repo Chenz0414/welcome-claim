@@ -152,7 +152,6 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 <img src={moreIcon} alt="更多浏览器" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
                 <span className="text-[11px] text-muted-foreground">更多</span>
               </div>
-              </div>
             </div>
           </div>
 
