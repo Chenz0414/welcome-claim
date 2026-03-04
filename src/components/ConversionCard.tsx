@@ -142,13 +142,13 @@ const ConversionCard = () => {
         <button
           onClick={handleClaim}
           disabled={loading}
-          className="w-full h-16 rounded-2xl font-extrabold border-none cursor-pointer shadow-btn mt-1 flex flex-col items-center justify-center transition-all active:scale-[0.98] disabled:opacity-80 disabled:pointer-events-none text-primary-foreground relative overflow-hidden"
+          className="w-full h-16 rounded-2xl font-extrabold border-none cursor-pointer shadow-btn mt-1 flex flex-col items-center justify-center transition-all active:scale-[0.98] disabled:opacity-80 disabled:pointer-events-none text-primary-foreground relative overflow-hidden animate-[breath_2.5s_ease-in-out_infinite]"
           style={{ background: "var(--gradient-orange)" }}
         >
           <span className="text-lg drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
             {loading ? "正在激活特权..." : "立即领取零售大会专属权益"}
           </span>
-          <span className="text-xs opacity-95 font-normal mt-0.5">
+          <span className="text-xs opacity-95 font-bold mt-0.5">
             {loading ? "礼包发放中" : "价值 500 元礼包"}
           </span>
         </button>
