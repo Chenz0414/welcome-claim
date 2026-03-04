@@ -1,9 +1,10 @@
-import { Check, Sparkles, Copy, Globe, Search } from "lucide-react";
+import { Check, Sparkles, Copy, Search } from "lucide-react";
 import { useState } from "react";
 import huaweiIcon from "@/assets/browser-huawei.webp";
 import safariIcon from "@/assets/browser-safari.png";
 import chromeIcon from "@/assets/browser-chrome.png";
 import ucIcon from "@/assets/browser-uc.png";
+import moreIcon from "@/assets/browser-more.png";
 
 interface SuccessModalProps {
   visible: boolean;
@@ -148,11 +149,9 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 <span className="text-[11px] text-muted-foreground">UC</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-10 h-10 rounded-lg shadow-sm flex items-center justify-center"
-                  style={{ background: "hsl(0 0% 92%)" }}>
-                  <Globe className="w-5 h-5" style={{ color: "hsl(0 0% 55%)" }} />
-                </div>
+                <img src={moreIcon} alt="更多浏览器" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
                 <span className="text-[11px] text-muted-foreground">更多</span>
+              </div>
               </div>
             </div>
           </div>
