@@ -110,7 +110,7 @@ const ConversionCard = () => {
             onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 11))}
             placeholder="请输入手机号"
             maxLength={11}
-            className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-foreground placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent border-none outline-none text-base font-medium text-foreground placeholder:text-muted-foreground"
           />
         </div>
 
@@ -124,12 +124,12 @@ const ConversionCard = () => {
             placeholder="输入验证码"
             maxLength={6}
             disabled={!PHONE_REGEX.test(phone)}
-            className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-transparent border-none outline-none text-base font-medium text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <button
             id="send-code-btn"
             disabled={countdown > 0 || !PHONE_REGEX.test(phone)}
-            className="text-xs sm:text-sm font-bold text-primary pl-3 sm:pl-4 border-l-[1.5px] border-border whitespace-nowrap disabled:text-muted-foreground disabled:cursor-not-allowed transition-colors shrink-0"
+            className="text-sm font-bold text-primary pl-3 sm:pl-4 border-l-[1.5px] border-border whitespace-nowrap disabled:text-muted-foreground disabled:cursor-not-allowed transition-colors shrink-0"
           >
             {countdown > 0 ? `${countdown}s` : "获取"}
           </button>
@@ -145,22 +145,22 @@ const ConversionCard = () => {
           className="w-full h-16 rounded-2xl font-extrabold border-none cursor-pointer shadow-btn mt-1 flex flex-col items-center justify-center transition-all active:scale-[0.98] disabled:opacity-80 disabled:pointer-events-none text-primary-foreground relative overflow-hidden"
           style={{ background: "var(--gradient-orange)" }}
         >
-          <span className="text-[17px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
+          <span className="text-lg drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
             {loading ? "正在激活特权..." : "立即领取零售大会专属权益"}
           </span>
-          <span className="text-[10px] opacity-95 font-normal mt-0.5">
+          <span className="text-xs opacity-95 font-normal mt-0.5">
             {loading ? "礼包发放中" : "价值 500 元礼包"}
           </span>
         </button>
 
         {/* Share hint */}
-        <p className="mt-3 text-center text-[11px] text-rita-slate-faint leading-relaxed">
+        <p className="mt-3 text-center text-xs text-rita-slate-faint leading-relaxed">
           支持分享给合作伙伴或同事，让更多人同步体验企业级 AI 能力
         </p>
 
         {/* Trust badge */}
-        <div className="flex items-center justify-center gap-1.5 mt-3.5 text-[11px] text-rita-slate-faint">
-          <Users className="w-3.5 h-3.5" />
+        <div className="flex items-center justify-center gap-1.5 mt-3.5 text-xs text-rita-slate-faint">
+          <Users className="w-4 h-4" />
           <span>
             已有 <strong className="text-rita-slate-body font-bold">12,500+</strong> 位零售与跨境老板领取权益
           </span>

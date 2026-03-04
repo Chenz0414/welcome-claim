@@ -65,10 +65,10 @@ const EnterpriseCases = () => {
   return (
     <section className="w-full px-5 sm:px-6 py-8 mx-auto">
       <div className="flex flex-col items-center text-center mb-8 px-2">
-        <h2 className="text-xl sm:text-2xl font-black text-foreground mb-3 tracking-tight">
+        <h2 className="text-2xl sm:text-[28px] font-black text-foreground mb-3 tracking-tight">
           RITA 如何赋能企业
         </h2>
-        <p className="max-w-sm text-rita-slate-body text-xs sm:text-sm leading-relaxed font-medium">
+        <p className="max-w-sm text-rita-slate-body text-sm leading-relaxed font-medium">
           解放老板，弥补团队能力差异，提升落地效率，并为战略决策提供支持。
         </p>
         <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mt-5 rounded-full" />
@@ -90,11 +90,11 @@ const EnterpriseCases = () => {
                 {c.label}
               </span>
             </div>
-            <h3 className="text-base font-black text-foreground mb-1.5 tracking-tight">
+            <h3 className="text-lg font-black text-foreground mb-1.5 tracking-tight">
               {c.title}
             </h3>
-            <p className={`${c.quoteColor} text-xs font-bold mb-4`}>{c.quote}</p>
-            <div className="space-y-3 text-xs text-rita-slate-body leading-relaxed">
+            <p className={`${c.quoteColor} text-[13px] font-bold mb-4`}>{c.quote}</p>
+            <div className="space-y-3 text-[13px] text-rita-slate-body leading-relaxed">
               <p>
                 <strong className="text-foreground block mb-0.5 font-bold">{c.painLabel}</strong>
                 {c.painText}
