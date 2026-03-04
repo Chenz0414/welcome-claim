@@ -19,12 +19,12 @@ const Index = () => {
               <img src={ritaLogo} alt="Rita Logo" className="w-7 h-7" />
               <img src={ritaText} alt="Rita" className="h-5" />
             </div>
-            <h1 className="text-xl sm:text-2xl font-black leading-[1.3] tracking-tight text-foreground mb-2.5">
-              聚合全球顶级模型
+            <h1 className="text-2xl sm:text-[28px] font-black leading-[1.3] tracking-tight text-foreground mb-2.5">
+              聚合当下头部模型
               <br />
               提升企业 AI 生产力
             </h1>
-            <p className="text-[13px] text-rita-slate-body opacity-80 leading-relaxed">
+            <p className="text-sm text-rita-slate-body opacity-80 leading-relaxed">
               当业务规模扩大，效率成为关键变量
               <br />
               Rita助您将生产力提升10倍以上。
@@ -43,7 +43,7 @@ const Index = () => {
         <EnterpriseCases />
 
         {/* Footer */}
-        <footer className="pt-6 pb-2.5 text-center text-[11px] font-semibold text-rita-slate-faint">
+        <footer className="pt-6 pb-2.5 text-center text-xs font-semibold text-rita-slate-faint">
           Rita让创意和效率人人可得
         </footer>
       </div>

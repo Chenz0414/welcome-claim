@@ -37,8 +37,8 @@ const SceneCard = () => {
             {scene.icon}
           </div>
           <div>
-            <h4 className="text-sm font-extrabold text-foreground mb-0.5">{scene.title}</h4>
-            <p className="text-xs text-rita-slate-body leading-relaxed">{scene.desc}</p>
+            <h4 className="text-[15px] font-extrabold text-foreground mb-0.5">{scene.title}</h4>
+            <p className="text-[13px] text-rita-slate-body leading-relaxed">{scene.desc}</p>
           </div>
         </div>
       ))}
