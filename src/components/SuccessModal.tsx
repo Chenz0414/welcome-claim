@@ -75,12 +75,12 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
           </div>
 
           {/* Title - smaller */}
-          <h2 className="text-[22px] font-black text-foreground mb-1.5 tracking-tight text-center">
+          <h2 className="text-[24px] font-black text-foreground mb-1.5 tracking-tight text-center">
             领取成功
           </h2>
 
           {/* Description - smaller */}
-          <p className="text-muted-foreground text-xs text-center leading-relaxed max-w-[260px]">
+          <p className="text-muted-foreground text-[13px] text-center leading-relaxed max-w-[280px]">
             30 天高级版体验特权已即时生效，复制链接到浏览器使用 Rita
           </p>
         </div>
@@ -93,7 +93,7 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
             <div className="flex items-center gap-2 mb-2.5">
               <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-white"
                 style={{ background: "hsl(217 91% 60%)" }}>1</span>
-              <span className="text-[13px] font-semibold text-foreground">点击下方复制链接按钮</span>
+              <span className="text-[14px] font-semibold text-foreground">点击下方复制链接按钮</span>
             </div>
             <div className="w-full flex items-center gap-2 rounded-2xl px-4 py-2.5"
               style={{
@@ -101,12 +101,12 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 border: "1px solid hsl(0 0% 90%)",
               }}
             >
-              <span className="flex-1 text-sm truncate" style={{ color: "hsl(0 0% 45%)" }}>
+              <span className="flex-1 text-[15px] truncate" style={{ color: "hsl(0 0% 45%)" }}>
                 {redirectUrl.replace(/^https?:\/\//, '')}
               </span>
               <button
                 onClick={handleCopy}
-                className="shrink-0 px-5 py-2 rounded-xl text-sm font-bold text-white transition-all active:scale-95"
+                className="shrink-0 px-5 py-2 rounded-xl text-[15px] font-bold text-white transition-all active:scale-95"
                 style={{
                   background: copied ? "hsl(142 71% 45%)" : "hsl(217 91% 60%)",
                   boxShadow: copied ? "none" : "0 0 0 0 hsl(217 91% 60% / 0.6)",
@@ -123,7 +123,7 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
             <div className="flex items-center gap-2 mb-2.5">
               <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-white"
                 style={{ background: "hsl(217 91% 60%)" }}>2</span>
-              <span className="text-[13px] font-semibold text-foreground">打开手机桌面的浏览器</span>
+              <span className="text-[14px] font-semibold text-foreground">打开手机桌面的浏览器</span>
             </div>
             <div className="w-full flex items-center justify-center gap-4 py-3 rounded-2xl"
               style={{
@@ -133,19 +133,19 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
             >
               <div className="flex flex-col items-center gap-1">
                 <img src={huaweiIcon} alt="华为浏览器" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
-                <span className="text-[10px] text-muted-foreground">华为</span>
+                <span className="text-[11px] text-muted-foreground">华为</span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <img src={safariIcon} alt="Safari" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
-                <span className="text-[10px] text-muted-foreground">Safari</span>
+                <span className="text-[11px] text-muted-foreground">Safari</span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <img src={chromeIcon} alt="Chrome" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
-                <span className="text-[10px] text-muted-foreground">Chrome</span>
+                <span className="text-[11px] text-muted-foreground">Chrome</span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <img src={ucIcon} alt="UC" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
-                <span className="text-[10px] text-muted-foreground">UC</span>
+                <span className="text-[11px] text-muted-foreground">UC</span>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
             <div className="flex items-center gap-2 mb-2.5">
               <span className="shrink-0 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center text-white"
                 style={{ background: "hsl(217 91% 60%)" }}>3</span>
-              <span className="text-[13px] font-semibold text-foreground">在浏览器顶部地址栏，粘贴并访问</span>
+              <span className="text-[14px] font-semibold text-foreground">在浏览器顶部地址栏，粘贴并访问</span>
             </div>
             {/* Mock browser address bar */}
             <div className="w-full rounded-2xl overflow-hidden"
@@ -179,8 +179,8 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 style={{ background: "hsl(0 0% 100%)", border: "1px solid hsl(0 0% 85%)" }}
               >
                 <Search className="w-3.5 h-3.5 shrink-0" style={{ color: "hsl(0 0% 60%)" }} />
-                <span className="text-xs truncate" style={{ color: "hsl(217 91% 60%)" }}>
-                  {redirectUrl.replace(/^https?:\/\//, '')}
+                <span className="text-[13px]" style={{ color: "hsl(0 0% 70%)" }}>
+                  粘贴链接并访问
                 </span>
               </div>
             </div>
@@ -204,8 +204,8 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
           className="mt-5 w-full flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs transition-all active:scale-[0.98]"
           style={{ color: "hsl(217 91% 60%)" }}
         >
-          <span className="opacity-70">想分享给员工/同事共同开启效率革命？</span>
-          <span className="font-bold underline underline-offset-2">点击分享</span>
+          <span className="opacity-70 text-[13px]">想分享给员工/同事共同开启效率革命？</span>
+          <span className="font-bold underline underline-offset-2 text-[13px]">点击分享</span>
         </button>
 
         {/* Share toast */}
