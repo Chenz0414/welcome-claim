@@ -147,6 +147,13 @@ const SuccessModal = ({ visible, redirectUrl }: SuccessModalProps) => {
                 <img src={ucIcon} alt="UC" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
                 <span className="text-[11px] text-muted-foreground">UC</span>
               </div>
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-10 h-10 rounded-lg shadow-sm flex items-center justify-center"
+                  style={{ background: "hsl(0 0% 92%)" }}>
+                  <Globe className="w-5 h-5" style={{ color: "hsl(0 0% 55%)" }} />
+                </div>
+                <span className="text-[11px] text-muted-foreground">更多</span>
+              </div>
             </div>
           </div>
 
